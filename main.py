@@ -1,3 +1,4 @@
+import os
 import re
 import csv
 import random
@@ -25,3 +26,12 @@ with open(write_path, 'w+') as f:
     writer = csv.DictWriter(f, fieldnames=column_fields)
     writer.writeheader()
     writer.writerows(csv_info)
+
+with open(write_path) as f:
+    rename_folder = 'rename/'
+    if not os.path.isdir(rename_folder):
+        os.makedirs(rename_folder)
+    for row in csv.DictReader(f):
+        src = 'images/{}'.format(row['filename'])
+        rename = '{}{}'.format(rename_folder, row[CUSTOM_COLUMN])
+        os.system('cp {} {}'.format(src, rename))
