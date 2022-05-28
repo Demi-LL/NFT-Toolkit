@@ -20,7 +20,8 @@ with open(filepath) as f:
 
 random.shuffle(csv_info)
 for key, item in enumerate(csv_info):
-    item[CUSTOM_COLUMN] = '{}.{}'.format(key, re.match(r'\w*\.(.*)', item['filename']).group(1))
+    item[CUSTOM_COLUMN] = '{}'.format(key)
+    # '{}.{}'.format(key, re.match(r'\w*\.(.*)', item['filename']).group(1))
 
 with open(write_path, 'w+') as f:
     writer = csv.DictWriter(f, fieldnames=column_fields)
