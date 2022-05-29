@@ -20,7 +20,9 @@ with open(filepath) as f:
 
 random.shuffle(csv_info)
 for key, item in enumerate(csv_info):
+    # 移除副檔名
     item[CUSTOM_COLUMN] = '{}'.format(key)
+    # 保留副檔名
     # '{}.{}'.format(key, re.match(r'\w*\.(.*)', item['filename']).group(1))
 
 with open(write_path, 'w+') as f:
@@ -28,8 +30,8 @@ with open(write_path, 'w+') as f:
     writer.writeheader()
     writer.writerows(csv_info)
 
+rename_folder = input('Input folder pather you want to save rename files(default rename/):') or 'rename/'
 with open(write_path) as f:
-    rename_folder = 'rename/'
     if not os.path.isdir(rename_folder):
         os.makedirs(rename_folder)
     for row in csv.DictReader(f):
