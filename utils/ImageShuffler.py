@@ -3,7 +3,7 @@ import re
 import csv
 import random
 
-class RandomImages:
+class ImageShuffler:
     CUSTOM_COLUMN = 'random'
 
     def __init__(self):
